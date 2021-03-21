@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\Tags\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('tags')->name('tags.')->group(function () {
+        Route::get('', Index::class)->name('index');
+    });
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

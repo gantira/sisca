@@ -35,7 +35,7 @@
                 </ul>
             </li>
             <li>
-                <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
+                <a href="{{ route('admin.tags.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Tag</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
