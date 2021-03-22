@@ -11,14 +11,13 @@ class Index extends Component
     use WithPagination;
 
     public $search;
-
-    protected $queryString = ['search' => ['except' => '']];
-
+    public $sort = 'asc';
+    protected $queryString = ['search' => ['except' => ''], 'sort' => ['except' => 'asc']];
     protected $paginationTheme = 'bootstrap';
 
     public function render()
     {
-        $tags = Tag::where('name', 'like', '%' . $this->search . '%')->paginate(9);
+        $tags = Tag::orderBy('id', $this->sort)->where('name', 'like', '%' . $this->search . '%')->paginate(9);
 
         return view('livewire.admin.tags.index', [
             'tags' => $tags

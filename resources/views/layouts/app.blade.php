@@ -20,6 +20,9 @@
     <link href="{{ asset('vendor/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/css/style.css') }}" rel="stylesheet">
 
+    <!-- Ladda style -->
+    <link href="{{ asset('vendor/css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -90,6 +93,11 @@
 
     <!-- Toastr -->
     <script src="{{ asset('vendor/js/plugins/toastr/toastr.min.js') }}"></script>
+
+    <!-- Ladda -->
+    <script src="{{ asset('vendor/js/plugins/ladda/spin.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/plugins/ladda/ladda.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/plugins/ladda/ladda.jquery.min.js') }}"></script>
 
     @stack('js')
 
