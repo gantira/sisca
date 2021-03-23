@@ -7,10 +7,14 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $name;
+    public $tag;
 
     protected $rules = [
-        'name' => 'required|min:3',
+        'tag.name' => 'required|min:3',
+    ];
+
+    protected $validationAttributes = [
+        'tag.name' => 'name'
     ];
 
     public function render()
@@ -23,8 +27,10 @@ class Create extends Component
         $this->validate();
 
         Tag::create([
-            'name' => $this->name
+            'name' => $this->tag['name']
         ]);
+
+        session()->flash('message', 'Tag successfully created.');
 
         return redirect(route('admin.tags.index'));
     }

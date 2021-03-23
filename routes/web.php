@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Admin\Tags\{Index, Create};
+use App\Http\Livewire\Admin\Tags\{Index, Create, Edit};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('tags')->name('tags.')->group(function () {
             Route::get('', Index::class)->name('index');
+            Route::get('{tag}/edit', Edit::class)->name('edit');
             Route::get('create', Create::class)->name('create');
         });
     });

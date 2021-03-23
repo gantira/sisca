@@ -50,6 +50,9 @@
 
         <x-admin-chat />
         <x-admin-sidebar-right />
+
+        @yield('modal')
+
     </div>
 
 

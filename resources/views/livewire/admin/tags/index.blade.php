@@ -20,10 +20,10 @@
             <div class="col-sm-9 m-b-xs">
                 <a href="{{ route('admin.tags.create') }}" class="btn btn-sm btn-primary">New</a>
                 <div data-toggle="buttons" class="btn-group btn-group-toggle" wire:ignore>
-                    <label class="btn btn-sm btn-white active" wire:click="$set('sort', 'asc')"> <input name="sort"
-                            type="radio" id="option1" /> Asc </label>
-                    <label class="btn btn-sm btn-white" wire:click="$set('sort', 'desc')"> <input name="sort"
-                            type="radio" id="option2" /> Des </label>
+                    <label title="ascending" class="btn btn-sm btn-white active" wire:click="$set('sort', 'asc')"> <input name="sort"
+                            type="radio" id="option1" /><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> </label>
+                    <label title="descending" class="btn btn-sm btn-white" wire:click="$set('sort', 'desc')"> <input name="sort"
+                            type="radio" id="option2" /><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> </label>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -40,6 +40,7 @@
 
         <div class="row">
             <div class="col-lg-12">
+                <x-alert />
                 <div class="ibox ">
                     <div class="ibox-content " wire:loading.class="sk-loading">
                         <x-admin-table-loading-spinner />
@@ -54,22 +55,28 @@
                             </thead>
                             <tbody>
                                 @forelse ($tags as $key => $item)
-                                <tr>
-                                    <td>{{ $tags->firstItem() + $key }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->slug }}</td>
-                                    <td class="text-right">
-                                        <div class="btn-group">
-                                            <button wire:click="$emit('modal', {{ $item }})" class="btn-white btn btn-xs" data-toggle="modal" data-target="#myModal4">View</button>
-                                            <button class="btn-white btn btn-xs">Edit</button>
-                                            <button class="btn-white btn btn-xs">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $tags->firstItem() + $key }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->slug }}</td>
+                                        <td class="text-right">
+                                            <div class="project-actions">
+                                                <button wire:click="$emit('modalInfo', {{ $item->id }})"
+                                                    class="btn-white btn btn-xs" data-toggle="modal"
+                                                    data-target="#myModalInfo"><i class="fa fa-folder-o"></i> View</button>
+                                                <a href="{{ route('admin.tags.edit', $item) }}"
+                                                    class="btn-white btn btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                                <button wire:click="$emit('modalDelete', {{ $item->id }})"
+                                                    class="btn-white btn btn-xs" data-toggle="modal"
+                                                    data-target="#myModalDelete"><i class="fa fa-trash-o"></i>
+                                                    Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @empty
-                                <tr class="text-center">
-                                    <td colspan="4">Data Empty</td>
-                                </tr>
+                                    <tr class="text-center">
+                                        <td colspan="4">Data Empty</td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -79,6 +86,10 @@
             </div>
         </div>
 
-        <livewire:admin.modal />
     </div>
 </div>
+
+@section('modal')
+    <livewire:admin.tags.modal-info />
+    <livewire:admin.tags.modal-delete />
+@endsection

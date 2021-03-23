@@ -12,6 +12,7 @@ class Index extends Component
 
     public $search;
     public $sort = 'asc';
+
     protected $queryString = ['search' => ['except' => ''], 'sort' => ['except' => 'asc']];
     protected $paginationTheme = 'bootstrap';
 
