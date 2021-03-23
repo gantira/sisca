@@ -1,5 +1,5 @@
 <div class="modal inmodal" id="myModalDelete" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
-    @isset($tag)
+    @isset($category)
         <div class="modal-dialog">
             <div class="modal-content animated">
                 <div class="modal-header">
@@ -10,7 +10,7 @@
                     <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
                 </div>
                 <div class="modal-body">
-                    {{--  <p>{{ $tag }}</p>  --}}
+                    {{--  <p>{{ $category }}</p>  --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">No</button>

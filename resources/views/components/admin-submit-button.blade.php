@@ -1,4 +1,4 @@
-<button wire:loading.remove type="submit" class="btn btn-primary btn-sm">
+<button wire:loading.remove type="submit" class="btn btn-primary btn-sm" {{ $attributes }}>
     {{ $slot }}
 </button>
 

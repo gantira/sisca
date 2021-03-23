@@ -35,6 +35,9 @@
                 </ul>
             </li>
             <li>
+                <a href="{{ route('admin.categories.index') }}"><i class="fa fa-cube"></i> <span class="nav-label">Category</span></a>
+            </li>
+            <li>
                 <a href="{{ route('admin.tags.index') }}"><i class="fa fa-tags"></i> <span class="nav-label">Tag</span></a>
             </li>
             <li>

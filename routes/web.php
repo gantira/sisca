@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\Categories\{Create as CategoriesCreate, Edit as CategoriesEdit, Index as CategoriesIndex};
 use App\Http\Livewire\Admin\Tags\{Index, Create, Edit};
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('', Index::class)->name('index');
             Route::get('{tag}/edit', Edit::class)->name('edit');
             Route::get('create', Create::class)->name('create');
+        });
+        Route::prefix('categories')->name('categories.')->group(function () {
+            Route::get('', CategoriesIndex::class)->name('index');
+            Route::get('{category}/edit', CategoriesEdit::class)->name('edit');
+            Route::get('create', CategoriesCreate::class)->name('create');
         });
     });
 });
