@@ -23,4 +23,9 @@ class Team extends Model
             ]
         ];
     }
+
+    public function teamable()
+    {
+        return $this->morphTo();
+    }
 }

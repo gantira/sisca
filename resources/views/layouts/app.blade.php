@@ -11,23 +11,16 @@
     <link href="{{ asset('vendor/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
-    <!-- Toastr style -->
-    <link href="{{ asset('vendor/css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
-
-    <!-- Gritter -->
-    <link href="{{ asset('vendor/js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
-
     <link href="{{ asset('vendor/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/css/style.css') }}" rel="stylesheet">
-
-    <!-- Ladda style -->
-    <link href="{{ asset('vendor/css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{--  <link rel="stylesheet" href="{{ asset('css/app.css') }}">  --}}
+
+    @stack('css')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -55,8 +48,6 @@
 
     </div>
 
-
-
     <!-- Mainly scripts -->
     <script src="{{ asset('vendor/js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('vendor/js/popper.min.js') }}"></script>
@@ -64,43 +55,9 @@
     <script src="{{ asset('vendor/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
     <script src="{{ asset('vendor/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
-    <!-- Flot -->
-    <script src="{{ asset('vendor/js/plugins/flot/jquery.flot.js') }}"></script>
-    <script src="{{ asset('vendor/js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
-    <script src="{{ asset('vendor/js/plugins/flot/jquery.flot.spline.js') }}"></script>
-    <script src="{{ asset('vendor/js/plugins/flot/jquery.flot.resize.js') }}"></script>
-    <script src="{{ asset('vendor/js/plugins/flot/jquery.flot.pie.js') }}"></script>
-
-    <!-- Peity -->
-    <script src="{{ asset('vendor/js/plugins/peity/jquery.peity.min.js') }}"></script>
-    <script src="{{ asset('vendor/js/demo/peity-demo.js') }}"></script>
-
     <!-- Custom and plugin javascript -->
     <script src="{{ asset('vendor/js/inspinia.js') }}"></script>
     <script src="{{ asset('vendor/js/plugins/pace/pace.min.js') }}"></script>
-
-    <!-- jQuery UI -->
-    <script src="{{ asset('vendor/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-
-    <!-- GITTER -->
-    <script src="{{ asset('vendor/js/plugins/gritter/jquery.gritter.min.js') }}"></script>
-
-    <!-- Sparkline -->
-    <script src="{{ asset('vendor/js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-
-    <!-- Sparkline demo data  -->
-    <script src="{{ asset('vendor/js/demo/sparkline-demo.js') }}"></script>
-
-    <!-- ChartJS-->
-    <script src="{{ asset('vendor/js/plugins/chartJs/Chart.min.js') }}"></script>
-
-    <!-- Toastr -->
-    <script src="{{ asset('vendor/js/plugins/toastr/toastr.min.js') }}"></script>
-
-    <!-- Ladda -->
-    <script src="{{ asset('vendor/js/plugins/ladda/spin.min.js') }}"></script>
-    <script src="{{ asset('vendor/js/plugins/ladda/ladda.min.js') }}"></script>
-    <script src="{{ asset('vendor/js/plugins/ladda/ladda.jquery.min.js') }}"></script>
 
     @stack('js')
 

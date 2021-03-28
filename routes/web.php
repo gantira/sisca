@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Admin\Categories\{Create as CategoriesCreate, Edit as CategoriesEdit, Index as CategoriesIndex};
+use App\Http\Livewire\Admin\Posts\{Create, Edit, Index};
 use App\Http\Livewire\Admin\Tags\{Create as TagsCreate, Edit as TagsEdit, Index as TagsIndex};
 use App\Http\Livewire\Admin\Teams\{Create as TeamsCreate, Edit as TeamsEdit, Index as TeamsIndex};
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    // Admin Sites
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('tags')->name('tags.')->group(function () {
             Route::get('', TagsIndex::class)->name('index');
@@ -37,7 +39,16 @@ Route::middleware(['auth'])->group(function () {
             Route::get('{team}/edit', TeamsEdit::class)->name('edit');
             Route::get('create', TeamsCreate::class)->name('create');
         });
+        Route::prefix('posts')->name('posts.')->group(function () {
+            Route::get('', Index::class)->name('index');
+            Route::get('{post}/edit', Edit::class)->name('edit');
+            Route::get('create', Create::class)->name('create');
+        });
     });
+});
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
 Route::get('/dashboard', function () {

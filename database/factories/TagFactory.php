@@ -22,8 +22,8 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
-            'slug' => $this->faker->slug,
+            'name' => $this->faker->unique()->randomElement(['NDE 2020', 'Umail', 'Portal', 'Domino']),
+            'slug' => $this->faker->unique()->randomElement(['nde-2020', 'email', 'portal', 'domino']),
         ];
     }
 }

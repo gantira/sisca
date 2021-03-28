@@ -20,10 +20,12 @@
             <div class="col-sm-9 m-b-xs">
                 <a href="{{ route('admin.tags.create') }}" class="btn btn-sm btn-primary">New</a>
                 <div data-toggle="buttons" class="btn-group btn-group-toggle" wire:ignore>
-                    <label title="ascending" class="btn btn-sm btn-white active" wire:click="$set('sort', 'asc')"> <input name="sort"
-                            type="radio" id="option1" /><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> </label>
-                    <label title="descending" class="btn btn-sm btn-white" wire:click="$set('sort', 'desc')"> <input name="sort"
-                            type="radio" id="option2" /><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> </label>
+                    <label title="ascending" class="btn btn-sm btn-white active" wire:click="$set('sort', 'asc')">
+                        <input name="sort" type="radio" id="option1" /><i class="fa fa-sort-amount-asc"
+                            aria-hidden="true"></i> </label>
+                    <label title="descending" class="btn btn-sm btn-white" wire:click="$set('sort', 'desc')"> <input
+                            name="sort" type="radio" id="option2" /><i class="fa fa-sort-amount-desc"
+                            aria-hidden="true"></i> </label>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -42,19 +44,20 @@
             <div class="col-lg-12">
                 <x-alert />
                 <div class="ibox ">
-                    <div class="ibox-content " wire:loading.class="sk-loading">
-                        <x-admin-table-loading-spinner />
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Slug</th>
-                                    <th class="text-right" data-sort-ignore="true">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($tags as $key => $item)
+                    <div class="project-list">
+                        <div class="ibox-content " wire:loading.class="sk-loading">
+                            <x-admin-table-loading-spinner />
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th class="text-right" data-sort-ignore="true">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($tags as $key => $item)
                                     <tr>
                                         <td>{{ $tags->firstItem() + $key }}</td>
                                         <td>{{ $item->name }}</td>
@@ -62,25 +65,27 @@
                                         <td class="text-right">
                                             <div class="project-actions">
                                                 <button wire:click="$emit('modalInfo', {{ $item->id }})"
-                                                    class="btn-white btn btn-xs" data-toggle="modal"
-                                                    data-target="#myModalInfo"><i class="fa fa-folder-o"></i> View</button>
+                                                    class="btn-white btn btn-sm" data-toggle="modal"
+                                                    data-target="#myModalInfo"><i class="fa fa-folder"></i>
+                                                    View</button>
                                                 <a href="{{ route('admin.tags.edit', $item) }}"
-                                                    class="btn-white btn btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                                    class="btn-white btn btn-sm"><i class="fa fa-pencil"></i> Edit</a>
                                                 <button wire:click="$emit('modalDelete', {{ $item->id }})"
-                                                    class="btn-white btn btn-xs" data-toggle="modal"
-                                                    data-target="#myModalDelete"><i class="fa fa-trash-o"></i>
+                                                    class="btn-white btn btn-sm" data-toggle="modal"
+                                                    data-target="#myModalDelete"><i class="fa fa-trash"></i>
                                                     Delete</button>
                                             </div>
                                         </td>
                                     </tr>
-                                @empty
+                                    @empty
                                     <tr class="text-center">
                                         <td colspan="4">Data Empty</td>
                                     </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $tags->links() }}
+                                    @endforelse
+                                </tbody>
+                            </table>
+                            {{ $tags->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,6 +95,6 @@
 </div>
 
 @section('modal')
-    <livewire:admin.tags.modal-info />
-    <livewire:admin.tags.modal-delete />
+<livewire:admin.tags.modal-info />
+<livewire:admin.tags.modal-delete />
 @endsection

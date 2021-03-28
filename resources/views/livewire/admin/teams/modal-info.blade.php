@@ -1,7 +1,7 @@
 <div class="modal inmodal" id="myModalInfo" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
     @isset($team)
         <div class="modal-dialog">
-            <div class="modal-content animated bounceIn">
+            <div class="modal-content animated">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                             class="sr-only">Close</span></button>
