@@ -10,9 +10,9 @@
     </div>
     <ul class="nav navbar-top-links navbar-right">
         <li style="padding: 20px">
-            <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+            <span class="m-r-sm text-muted welcome-message">Welcome to {{ config('app.name') }} Admin.</span>
         </li>
-        <li class="dropdown">
+        {{-- <li class="dropdown">
             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
             </a>
@@ -108,7 +108,7 @@
                     </div>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
 
         <li>
@@ -116,11 +116,11 @@
                 <i class="fa fa-sign-out"></i> Log out
             </a>
         </li>
-        <li>
+        {{-- <li>
             <a class="right-sidebar-toggle">
                 <i class="fa fa-tasks"></i>
             </a>
-        </li>
+        </li> --}}
     </ul>
 
 </nav>

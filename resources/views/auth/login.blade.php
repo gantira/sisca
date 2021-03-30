@@ -1,56 +1,43 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+    <x-slot name="title">Login</x-slot>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
             <div>
-                <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <h1 class="logo-name">Sis+</h1>
+
             </div>
+            <h3>Welcome to IN+</h3>
+            <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+            </p>
+            <p>Login in. To see it in action.</p>
+            <form class="m-t" role="form" method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="form-group">
+                    <input name="email" type="email" class="form-control @error('email')
+                        is-invalid
+                    @enderror" placeholder="Username" required=""
+                        value="{{ old('email') }}" autofocus>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <input name="password" type="password" class="form-control" placeholder="Password" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
+                <a href="{{ route('password.request') }}"><small>Forgot password?</small></a>
                 @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
+                <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="{{ route('register') }}">Create an account</a>
+            </form>
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        </div>
+    </div>
 </x-guest-layout>

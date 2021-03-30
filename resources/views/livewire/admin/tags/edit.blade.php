@@ -4,7 +4,7 @@
             <h2>Edit a Tag</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{ url('/') }}">Home</a>
+                    <a href="{{ url('home') }}">Home</a>
                 </li>
                 <li class="breadcrumb-item">
                     <a href="{{ route('admin.tags.index') }}">Tag</a>

@@ -25,23 +25,23 @@
                 </div>
             </li>
 
-            <x-nav-link route="{{ route('dashboard') }}" icon="fa fa-dashboard" :active="request()->routeIs('dashboard')" >
+            <x-nav-link route="{{ route('home') }}" icon="fa fa-th-large" :active="request()->routeIs('home')" >
                 Dashboard
+            </x-nav-link>
+
+            <x-nav-link class="landing_link" route="{{ route('admin.posts.index') }}" icon="fa fa-star" :active="request()->routeIs('admin.posts.*')" >
+                Post
             </x-nav-link>
 
             <x-nav-link route="{{ route('admin.categories.index') }}" icon="fa fa-cube" :active="request()->routeIs('admin.categories.*')" >
                 Category
             </x-nav-link>
 
-            <x-nav-link route="{{ route('admin.posts.index') }}" icon="fa fa-tags" :active="request()->routeIs('admin.posts.*')" >
-                Post
-            </x-nav-link>
-
             <x-nav-link route="{{ route('admin.tags.index') }}" icon="fa fa-tags" :active="request()->routeIs('admin.tags.*')" >
                 Tag
             </x-nav-link>
 
-            <x-nav-link route="{{ route('admin.teams.index') }}" icon="fa fa-building" :active="request()->routeIs('admin.teams.*')" >
+            <x-nav-link route="{{ route('admin.teams.index') }}" icon="fa fa-bandcamp" :active="request()->routeIs('admin.teams.*')" >
                 Team
             </x-nav-link>
 

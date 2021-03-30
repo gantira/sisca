@@ -41,7 +41,7 @@
             <x-admin-footer />
         </div>
 
-        <x-admin-chat />
+        {{-- <x-admin-chat /> --}}
         <x-admin-sidebar-right />
 
         @yield('modal')

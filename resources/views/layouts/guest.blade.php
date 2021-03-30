@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>{{ config('app.name') }} | {{ $title }}</title>
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
-    </body>
+    <link href="{{ asset('vendor/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    @stack('css')
+    <link href="{{ asset('vendor/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/style.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    {{ $slot }}
+
+    <!-- Mainly scripts -->
+    <script src="{{ asset('vendor/js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/popper.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/bootstrap.js') }}"></script>
+
+    @stack('js')
+</body>
+
 </html>

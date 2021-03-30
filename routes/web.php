@@ -21,7 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/home', function () {
+        return view('dashboard');
+    })->name('home');
+
     // Admin Sites
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('tags')->name('tags.')->group(function () {

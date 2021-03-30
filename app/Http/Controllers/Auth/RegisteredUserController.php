@@ -34,12 +34,15 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|domain:telkom.co.id|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
         ]);
 
+        $username = explode("@",$request->email);
+
         Auth::login($user = User::create([
             'name' => $request->name,
+            'username' => $username[0],
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]));
