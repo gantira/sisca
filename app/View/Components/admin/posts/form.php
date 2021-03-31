@@ -10,18 +10,20 @@ class form extends Component
     public $button;
     public $categories;
     public $tags;
+    public $statuses;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($backUrl, $button, $categories, $tags)
+    public function __construct($backUrl, $button, $categories, $tags, $statuses)
     {
         $this->backUrl = $backUrl;
         $this->button = $button;
         $this->categories = $categories;
         $this->tags = $tags;
+        $this->statuses = $statuses;
     }
 
     /**

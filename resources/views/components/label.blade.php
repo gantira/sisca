@@ -1,5 +1,24 @@
-@props(['value'])
+@props(['status'])
 
-<label {{ $attributes->merge(['class' => 'block font-medium text-sm text-gray-700']) }}>
-    {{ $value ?? $slot }}
-</label>
+@php
+    switch ($status) {
+        case 'team':
+            $clasess = 'badge badge-primaryu';
+            break;
+        case 'private':
+            $clasess = 'badge badge-info';
+            break;
+        case 'public':
+            $clasess = 'badge badge-default';
+            break;
+
+        default:
+            $clasess = 'badge badge-default';
+            break;
+    }
+
+@endphp
+
+<span {{ $attributes->merge(['class' => $clasess]) }}>
+    {{ $slot }}
+</span>

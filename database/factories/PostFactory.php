@@ -25,11 +25,10 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => User::factory()->create(),
+            'status_id' => 1,
             'title' => Str::title($this->faker->sentence()),
             'slug' => $this->faker->slug(),
             'body' => $this->faker->sentence(25),
-            'thumbnail' => null,
-            'status' => $this->faker->randomElement(['published', 'draft']),
         ];
     }
 }

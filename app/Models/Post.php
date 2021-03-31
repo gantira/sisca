@@ -29,7 +29,7 @@ class Post extends Model
         'slug',
         'body',
         'thumbnail',
-        'status',
+        'status_id',
     ];
 
 
@@ -58,5 +58,10 @@ class Post extends Model
     public function showTags()
     {
         return $this->has('tags') ? $this->tags()->pluck('name') : null;
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

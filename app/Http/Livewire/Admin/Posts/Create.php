@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Posts;
 
 use App\Models\Category;
+use App\Models\Status;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -18,6 +19,7 @@ class Create extends Component
     protected $rules = [
         'post.title' => 'required|min:3',
         'post.body' => 'required|min:3',
+        'post.status_id' => 'required',
         'category_id' => 'nullable',
         'tag_id' => 'nullable',
     ];
@@ -25,6 +27,7 @@ class Create extends Component
     protected $validationAttributes = [
         'post.title' => 'title',
         'post.body' => 'body',
+        'post.status_id' => 'status',
         'category_id' => 'category',
         'tag_id' => 'tag',
     ];
@@ -34,6 +37,7 @@ class Create extends Component
         return view('livewire.admin.posts.create', [
             'categories' => Category::select('id', 'name')->get(),
             'tags' => Tag::select('id', 'name')->get(),
+            'statuses' => Status::select('id', 'name')->get(),
         ]);
     }
 

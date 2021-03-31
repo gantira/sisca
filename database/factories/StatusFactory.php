@@ -22,9 +22,9 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->randomElement(['published', 'team', 'draft']),
-            'description' => $this->faker->randomElement(['description published', 'description team', 'description draft']),
-            'slug' => $this->faker->randomElement(['published', 'team', 'draft']),
+            'name' => $this->faker->unique()->randomElement(['public', 'team', 'private']),
+            'description' => $this->faker->unique()->randomElement(['post as public', 'post as team', 'post as private']),
+            'slug' => $this->faker->randomElement(['public', 'team', 'private']),
         ];
     }
 }

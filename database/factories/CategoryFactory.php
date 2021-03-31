@@ -23,7 +23,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->randomElement(['NDE', 'Email', 'Server', 'Domino']),
-            'slug' => $this->faker->randomElement(['nde', 'email', 'server', 'Domino']),
+            'slug' => $this->faker->randomElement(['nde', 'email', 'server', 'domino']),
         ];
     }
 }

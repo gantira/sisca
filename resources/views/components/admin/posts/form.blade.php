@@ -61,6 +61,27 @@
     </div>
 </div>
 
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Status <br /><small class="text-navy"></small></label>
+
+    <div class="col-sm-10">
+        <div wire:ignore>
+            @foreach ($statuses as $item)
+            <div class="i-checks text-capitalize"><label>
+                    <input @if ($this->post && ($this->post['status_id'] == $item->id))
+                    checked
+                    @endif type="radio" value="{{ $item->id }}" name="status_id"> {{ $item->name}}</div>
+            @endforeach
+        </div>
+        @error('post.status_id')
+        <div class="text-danger">
+            <small>{{ $message }}</small>
+        </div>
+        @enderror
+    </div>
+
+</div>
+
 <div class="hr-line-dashed"></div>
 <div class="form-group row">
     {{-- <label class="col-sm-2 col-form-label"></label> --}}
@@ -73,6 +94,9 @@
 @push('css')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <link href="{{ asset('vendor/css/plugins/chosen/bootstrap-chosen.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}"
+    rel="stylesheet">
+<link href="{{ asset('vendor/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
 @endpush
 
 @push('js')
@@ -81,9 +105,21 @@
 
 <!-- Select2 -->
 <script src="{{ asset('vendor/js/plugins/chosen/chosen.jquery.js') }}"></script>
+<!-- iCheck -->
+<script src="{{ asset('vendor/js/plugins/iCheck/icheck.min.js') }}"></script>
 
 <script>
     $(document).ready(function() {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+            $('input').on('ifChecked', function (event) {
+                var value = $("input[type=radio][name=status_id]:checked").val();
+                @this.set('post.status_id', value);
+            });
 
             // Define function to open filemanager window
             var lfm = function(options, cb) {
@@ -118,6 +154,7 @@
             // Please note that you can add this button to any other button group you'd like
             $('.summernote').summernote({
                 placeholder: 'Write here...',
+                height: 150,
                 tabsize: 2,
                 disableDragAndDrop:true,
                 toolbar: [
@@ -149,15 +186,19 @@
             });
 
             $('#category_id').on('change', function(e) {
-                var data = $('#category_id').chosen().val();
-                @this.set('category_id', data);
+                var value = $('#category_id').chosen().val();
+                @this.set('category_id', value);
             });
 
             $('#tag_id').on('change', function(e) {
-                var data = $('#tag_id').chosen().val();
-                @this.set('tag_id', data);
+                var value = $('#tag_id').chosen().val();
+                @this.set('tag_id', value);
             });
+
+
         });
+
+
 
 </script>
 @endpush

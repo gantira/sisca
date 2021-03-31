@@ -24,7 +24,7 @@
                 <div class="ibox ">
                     <div class="ibox-content">
                         <form wire:submit.prevent="save">
-                           <x-admin.posts.form :categories="$categories" :tags="$tags" backUrl="admin.posts.index" button="Save changes" />
+                           <x-admin.posts.form :statuses="$statuses" :categories="$categories" :tags="$tags" backUrl="admin.posts.index" button="Save changes" />
                         </form>
                     </div>
                 </div>

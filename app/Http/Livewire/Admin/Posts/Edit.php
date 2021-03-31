@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Status;
 use App\Models\Tag;
 use Livewire\Component;
 
@@ -16,6 +17,7 @@ class Edit extends Component
     protected $rules = [
         'post.title' => 'required|min:3',
         'post.body' => 'required|min:3',
+        'post.status_id' => 'required',
         'category_id' => 'nullable',
         'tag_id' => 'nullable',
     ];
@@ -32,6 +34,7 @@ class Edit extends Component
         return view('livewire.admin.posts.edit', [
             'categories' => Category::select('id', 'name')->get(),
             'tags' => Tag::select('id', 'name')->get(),
+            'statuses' => Status::select('id', 'name')->get(),
         ]);
     }
 
