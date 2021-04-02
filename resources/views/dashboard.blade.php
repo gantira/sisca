@@ -518,7 +518,7 @@
                         showMethod: 'slideDown',
                         timeOut: 4000
                     };
-                    toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+                    toastr.success('Responsive Admin Theme', 'Welcome to Sisca Admin');
 
                 }, 1300);
 

@@ -3,7 +3,7 @@
 @php
     switch ($status) {
         case 'team':
-            $clasess = 'badge badge-primaryu';
+            $clasess = 'badge badge-primary';
             break;
         case 'private':
             $clasess = 'badge badge-info';

@@ -8,8 +8,6 @@ use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-use function PHPUnit\Framework\isNull;
-
 class Create extends Component
 {
     public $post;

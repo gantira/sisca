@@ -60,6 +60,7 @@
                                 <thead>
                                     <tr>
                                         <th>Status</th>
+                                        <th>Category</th>
                                         <th>Title</th>
                                         <th class="text-right">Author</th>
                                         <th class="text-right">Actions</th>
@@ -70,6 +71,12 @@
                                     <tr>
                                         <td class="project-status">
                                             <x-label :status="$item->status->name"> {{ $item->status->name }}</x-label>
+                                        </td>
+                                        <td class="project-status">
+                                            @if ($item->categories()->first())
+                                            <x-label :status="$item->categories()->first()->name">
+                                                {{ $item->categories()->first()->name }}</x-label>
+                                            @endif
                                         </td>
                                         <td class="project-title">
                                             <a data-toggle="modal" data-target="#myModalInfo"

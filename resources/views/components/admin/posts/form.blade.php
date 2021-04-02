@@ -68,7 +68,7 @@
         <div wire:ignore>
             @foreach ($statuses as $item)
             <div class="i-checks text-capitalize"><label>
-                    <input @if ($this->post && ($this->post['status_id'] == $item->id))
+                    <input @if (request()->routeIs('admin.posts.edit') && $this->post['status_id'] == $item->id)
                     checked
                     @endif type="radio" value="{{ $item->id }}" name="status_id"> {{ $item->name}}</div>
             @endforeach

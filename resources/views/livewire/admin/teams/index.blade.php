@@ -52,7 +52,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Slug</th>
+                                        <th>Description</th>
                                         <th class="text-right" data-sort-ignore="true">Actions</th>
                                     </tr>
                                 </thead>
@@ -61,7 +61,7 @@
                                     <tr>
                                         <td>{{ $teams->firstItem() + $key }}</td>
                                         <td class="project-title">{{ $item->name }}</td>
-                                        <td>{{ $item->slug }}</td>
+                                        <td>{{ $item->description }}</td>
                                         <td class="text-right">
                                             <div class="project-actions">
                                                 <button wire:click="$emit('modalInfo', {{ $item->id }})"

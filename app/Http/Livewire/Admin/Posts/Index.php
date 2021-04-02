@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Admin\Posts;
 
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -18,7 +20,14 @@ class Index extends Component
 
     public function render()
     {
-        $posts = Post::orderBy('id', $this->sort)->where('title', 'like', '%' . $this->search . '%')->paginate(9);
+        $posts = Post::query()
+            ->where('user_id', Auth::user()->id)
+            ->orWhereHas('status', function (Builder $query) {
+                $query->where('name', 'public')->orWhere('name', 'team');
+            })
+            ->orderBy('id', $this->sort)
+            ->where('title', 'like', '%' . $this->search . '%')
+            ->paginate(9);
 
         return view('livewire.admin.posts.index', [
             'posts' => $posts,
