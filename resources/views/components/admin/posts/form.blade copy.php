@@ -1,37 +1,26 @@
-<div class="form-group"><label class="">Title</label>
-    <input type="text" class="form-control @error('post.title') is-invalid @enderror" wire:model.defer="post.title">
-    @error('post.title')
-    <div class="invalid-feedback">
-        {{ $message }}
+<div class="form-group row"><label class="col-sm-2 col-form-label">Title</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control @error('post.title') is-invalid @enderror" wire:model.defer="post.title">
+        @error('post.title')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
     </div>
-    @enderror
 </div>
 
-<div class="form-group" wire:ignore>
-    <label for="description">Body</label>
-    <textarea class="form-control" id="description" name="description" cols="30" rows="10" wire:model.defer="post.body"
-        x-data x-init="
-        CKEDITOR.replace('description',{
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-        });
-
-        CKEDITOR.instances['description'].on('change', function(e){
-            $dispatch('input', e.editor.getData())
-        });
-
-    "></textarea>
-    @error('post.body')
-    <div class="text-danger">
-        <small>{{ $message }}</small>
+<div class="form-group row"><label class="col-sm-2 col-form-label">Body</label>
+    <div class="col-sm-10">
+        <div wire:ignore>
+            <textarea class="summernote">{!! $this->post->body ?? '' !!}</textarea>
+        </div>
+        @error('post.body')
+        <div class="text-danger">
+            <small>{{ $message }}</small>
+        </div>
+        @enderror
     </div>
-    @enderror
 </div>
-
-
-
 <div class="form-group row"><label class="col-sm-2 col-form-label">Category</label>
     <div class="col-sm-10">
         <div wire:ignore>
@@ -111,7 +100,8 @@
 @endpush
 
 @push('js')
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<!-- SUMMERNOTE -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 <!-- Select2 -->
 <script src="{{ asset('vendor/js/plugins/chosen/chosen.jquery.js') }}"></script>
@@ -130,6 +120,62 @@
                 var value = $("input[type=radio][name=status_id]:checked").val();
                 @this.set('post.status_id', value);
             });
+
+            // Define function to open filemanager window
+            var lfm = function(options, cb) {
+                var route_prefix = (options && options.prefix) ? options.prefix :
+                    "{{ url('laravel-filemanager') }}";
+                window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager',
+                    'width=1024,height=600,location=no');
+                window.SetUrl = cb;
+            };
+
+            // Define LFM summernote button
+            var LFMButton = function(context) {
+                var ui = $.summernote.ui;
+                var button = ui.button({
+                    contents: '<i class="note-icon-picture"></i> ',
+                    tooltip: 'Image',
+                    click: function() {
+                        lfm({
+                            type: 'image',
+                            prefix: "{{ url('laravel-filemanager') }}"
+                        }, function(lfmItems, path) {
+                            lfmItems.forEach(function(lfmItem) {
+                                context.invoke('insertImage', lfmItem.url);
+                            });
+                        });
+                    }
+                });
+                return button.render();
+            };
+
+            // Initialize summernote with LFM button in the popover button group
+            // Please note that you can add this button to any other button group you'd like
+            $('.summernote').summernote({
+                placeholder: 'Write here...',
+                height: 150,
+                tabsize: 2,
+                disableDragAndDrop:true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'lfm', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+
+                buttons: {
+                    lfm: LFMButton
+                },
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        @this.set('post.body', contents);
+                    }
+                }
+            })
 
             $('.chosen-select-single').chosen({
                 max_selected_options: 1,
