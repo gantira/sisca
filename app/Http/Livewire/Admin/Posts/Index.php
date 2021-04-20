@@ -20,12 +20,7 @@ class Index extends Component
 
     public function render()
     {
-        $posts = Post::query()
-            ->where('user_id', Auth::user()->id)
-            ->orWhereHas('status', function (Builder $query) {
-                $query->where('name', 'public')->orWhere('name', 'team');
-            })
-            ->orderBy('id', $this->sort)
+        $posts = Post::orderBy('id', $this->sort)
             ->where('title', 'like', '%' . $this->search . '%')
             ->paginate(9);
 
