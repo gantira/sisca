@@ -81,7 +81,7 @@
             <div class="i-checks text-capitalize"><label>
                     <input @if (request()->routeIs('admin.posts.edit') && $this->post['status_id'] == $item->id)
                     checked
-                    @endif type="radio" value="{{ $item->id }}" name="status_id"> {{ $item->name}}</div>
+                    @endif @if ($item->name == 'private') disabled @endif type="radio" value="{{ $item->id }}" name="status_id"> {{ $item->name}}</div>
             @endforeach
         </div>
         @error('post.status_id')

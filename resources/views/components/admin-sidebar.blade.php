@@ -29,7 +29,7 @@
                 Dashboard
             </x-nav-link>
 
-            <x-nav-link class="landing_link" route="{{ route('admin.posts.index') }}" icon="fa fa-star" :active="request()->routeIs('admin.posts.*')" >
+            <x-nav-link class="" route="{{ route('admin.posts.index') }}" icon="fa fa-star" :active="request()->routeIs('admin.posts.*')" >
                 Post
             </x-nav-link>
 

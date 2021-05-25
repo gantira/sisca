@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Admin\Categories\{Create as CategoriesCreate, Edit as CategoriesEdit, Index as CategoriesIndex};
+use App\Http\Livewire\Admin\Dashboard\Index as DashboardIndex;
 use App\Http\Livewire\Admin\Posts\{Create, Edit, Index};
 use App\Http\Livewire\Admin\Tags\{Create as TagsCreate, Edit as TagsEdit, Index as TagsIndex};
 use App\Http\Livewire\Admin\Teams\{Create as TeamsCreate, Edit as TeamsEdit, Index as TeamsIndex};
@@ -17,17 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/home', function () {
-        return view('dashboard');
-    })->name('home');
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::get('home', DashboardIndex::class)->name('home');
 
     // Admin Sites
     Route::prefix('admin')->name('admin.')->group(function () {
+
         Route::prefix('tags')->name('tags.')->group(function () {
             Route::get('', TagsIndex::class)->name('index');
             Route::get('{tag}/edit', TagsEdit::class)->name('edit');
